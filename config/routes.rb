@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  get 'parking_zones/index'
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
-  # root "articles#index"
+  root 'parking_zones#index'
+  post "/create_parking_zone", to: "parking_zones#create_parking_zone"
 end

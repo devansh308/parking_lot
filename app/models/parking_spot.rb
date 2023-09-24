@@ -1,4 +1,4 @@
 class ParkingSpot < ApplicationRecord
   belongs_to :parking_zone
-  belongs_to :car
+  belongs_to :car, optional: true
 end
