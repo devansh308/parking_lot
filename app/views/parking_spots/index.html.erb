@@ -32,6 +32,11 @@
           <td><%= parking_spot.car&.registration_number %></td>
           <td><%= parking_spot.car&.color %></td>
           <td><%= parking_spot.car&.ticket&.id %></td>
+          <td>
+            <% if parking_spot.car.present? %>
+              <%= link_to "Unpark", unpark_car_parking_spot_path(parking_spot), method: :delete, data: { confirm: "Are you sure you want to unpark this car?" }, class: "btn btn-danger btn-sm" %>
+            <% end %>
+          </td>
         </tr>
       <% end %>
     </tbody>

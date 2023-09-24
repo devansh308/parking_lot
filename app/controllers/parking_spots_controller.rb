@@ -38,6 +38,19 @@ class ParkingSpotsController < ApplicationController
     end
   end
 
+  def unpark_car
+    @parking_spot = ParkingSpot.find(params[:id])
+    @car = @parking_spot.car
+
+    if @car.present?
+      @parking_spot.car = nil
+      @parking_spot.save
+      @car.destroy
+
+      redirect_to parking_spots_path, notice: "Car has been unparked."
+    end
+  end
+
   private
 
   def car_params

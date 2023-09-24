@@ -7,4 +7,9 @@ Rails.application.routes.draw do
   get "/registration_numbers_by_color", to: "parking_spots#registration_numbers_by_color", as: :registration_numbers_by_color
   get "/ticket_numbers_by_color", to: "parking_spots#ticket_numbers_by_color", as: :ticket_numbers_by_color
   get "/ticket_number_by_registration_number", to: "parking_spots#ticket_number_by_registration_number", as: :ticket_number_by_registration_number
+  resources :parking_spots do
+    member do
+      delete 'unpark_car', to: 'parking_spots#unpark_car'
+    end
+  end
 end
