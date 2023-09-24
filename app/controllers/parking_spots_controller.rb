@@ -19,6 +19,12 @@ class ParkingSpotsController < ApplicationController
     end
   end
 
+  def registration_numbers_by_color
+    color = params[:color]
+    cars = Car.where(color: color)
+    @registration_numbers = cars.pluck(:registration_number)
+  end
+
   private
 
   def car_params
