@@ -30,6 +30,14 @@ class ParkingSpotsController < ApplicationController
     @ticket_numbers = Ticket.joins(car: :parking_spot).where(cars: { color: color }).pluck(:id)
   end
 
+  def ticket_number_by_registration_number
+    registration_number = params[:registration_number]
+    @ticket_number = Ticket.joins(:car).where(car: {registration_number: registration_number}).pick(:id)
+    unless @ticket_number
+      @ticket_number = "Car not found."
+    end
+  end
+
   private
 
   def car_params

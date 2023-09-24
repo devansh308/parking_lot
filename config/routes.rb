@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   post "/park_car", to: "parking_spots#park_car"
   get "/registration_numbers_by_color", to: "parking_spots#registration_numbers_by_color", as: :registration_numbers_by_color
   get "/ticket_numbers_by_color", to: "parking_spots#ticket_numbers_by_color", as: :ticket_numbers_by_color
+  get "/ticket_number_by_registration_number", to: "parking_spots#ticket_number_by_registration_number", as: :ticket_number_by_registration_number
 end
