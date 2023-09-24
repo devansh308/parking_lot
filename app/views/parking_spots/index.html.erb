@@ -20,6 +20,7 @@
           <th>Spot Number</th>
           <th>Car Registration Number</th>
           <th>Car Color</th>
+          <th>Ticket Number</th>
         </tr>
       </thead>
       <tbody>
@@ -28,6 +29,7 @@
             <td><%= parking_spot.spot_number %></td>
             <td><%= parking_spot.car&.registration_number %></td>
             <td><%= parking_spot.car&.color %></td>
+            <td><%= parking_spot.car&.ticket&.id %></td>
           </tr>
         <% end %>
       </tbody>
