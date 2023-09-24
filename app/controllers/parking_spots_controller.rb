@@ -25,6 +25,11 @@ class ParkingSpotsController < ApplicationController
     @registration_numbers = cars.pluck(:registration_number)
   end
 
+  def ticket_numbers_by_color
+    color = params[:color]
+    @ticket_numbers = Ticket.joins(car: :parking_spot).where(cars: { color: color }).pluck(:id)
+  end
+
   private
 
   def car_params

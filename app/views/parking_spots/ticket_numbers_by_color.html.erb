@@ -1,0 +1,16 @@
+<div class="container mt-4">
+  <h1>Ticket Numbers by Color</h1>
+  <%= form_with url: ticket_numbers_by_color_path, method: :get, class: "mt-3" do |f| %>
+    <div class="form-group">
+      <%= f.label :color, "Color" %>
+      <%= f.text_field :color, class: "form-control" %>
+    </div>
+    <br>
+    <%= f.submit "Search", class: "btn btn-primary" %>
+  <% end %>
+  <% if @ticket_numbers.present? %>
+    <div class="mt-3">
+      <p>Ticket Numbers Are: <%= @ticket_numbers.join(", ") %></p>
+    </div>
+  <% end %>
+</div>
