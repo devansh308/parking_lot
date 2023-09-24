@@ -15,5 +15,6 @@ class ParkingZonesController < ApplicationController
         parking_zone: parking_zone
       )
     end
+    redirect_to parking_spots_path, notice: "Parking lot created with #{spot_count} spots."
   end
 end
