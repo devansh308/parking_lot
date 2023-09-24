@@ -13,8 +13,8 @@
 #  index_cars_on_registration_number  (registration_number) UNIQUE
 #
 class Car < ApplicationRecord
-    has_one :parking_spot
-    has_one :ticket
+    has_one :parking_spot, dependent: :destroy
+    has_one :ticket, dependent: :destroy
 
     validates :registration_number, uniqueness: true
 
