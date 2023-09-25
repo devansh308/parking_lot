@@ -18,11 +18,17 @@ class Car < ApplicationRecord
 
     validates :registration_number, uniqueness: true
 
+    before_validation :normalize_color
+
     after_create :create_ticket
 
     private
 
     def create_ticket
         Ticket.create(car: self)
+    end
+
+    def normalize_color
+        self.color = color.downcase.strip if color.present?
     end
 end
