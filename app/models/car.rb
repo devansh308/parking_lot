@@ -19,6 +19,7 @@ class Car < ApplicationRecord
     validates :registration_number, uniqueness: true
 
     before_validation :normalize_color
+    before_validation :normalize_registration_number
 
     after_create :create_ticket
 
@@ -30,5 +31,9 @@ class Car < ApplicationRecord
 
     def normalize_color
         self.color = color.downcase.strip if color.present?
+    end
+
+    def normalize_registration_number
+        self.registration_number = registration_number.upcase.strip if registration_number.present?
     end
 end

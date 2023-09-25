@@ -31,7 +31,7 @@ class ParkingSpotsController < ApplicationController
   end
 
   def ticket_number_by_registration_number
-    registration_number = params[:registration_number]
+    registration_number = params[:registration_number]&.upcase&.strip
     if registration_number.present?
       @ticket_number = Ticket.joins(:car).where(car: {registration_number: registration_number}).pick(:id)
       unless @ticket_number
