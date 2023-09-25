@@ -22,4 +22,10 @@
 class ParkingSpot < ApplicationRecord
   belongs_to :parking_zone
   belongs_to :car, optional: true
+
+  scope :available, -> { where(car_id: nil) }
+
+  def self.find_available_spot
+    available.first
+  end
 end

@@ -6,7 +6,7 @@ class ParkingSpotsController < ApplicationController
   def park_car
     car = Car.new(car_params)
     if car.save
-      parking_spot = ParkingSpot.where(car_id: nil).first
+      parking_spot = ParkingSpot.find_available_spot
       if parking_spot
         parking_spot.update(car: car)
         redirect_to parking_spots_path, notice: "Car parked successfully. Spot number: #{parking_spot.spot_number}"
