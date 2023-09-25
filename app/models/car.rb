@@ -18,6 +18,9 @@ class Car < ApplicationRecord
 
     validates :registration_number, uniqueness: true
 
+    validates :registration_number, presence: true
+    validates :color, presence: true
+
     before_validation :normalize_color
     before_validation :normalize_registration_number
 
