@@ -1,0 +1,27 @@
+To create an efficient and usable parking system, I thought a lot about the design of its models and their associations. Here is the final structure:
+
+1. ParkingZone (ParkingLot renamed as project name is also parking_lot): This entity represents the overall parking area. It allows the creation of 'n' parking spots, as specified in the project requirements.
+
+2. ParkingSpot: These are the individual parking slots where cars are parked. Each spot can either be occupied by a car or remain empty. To accommodate this, the ParkingSpot model includes an optional foreign key, car_id, and a spot_number attribute, ranging from 1 to 'n' to signify proximity to the entry gate.
+
+3. Car: Car should have a unique registration_number and color. When a car enters the parking zone and occupies a spot, it is assigned a ticket.
+
+4. Ticket: Each ticket has a unique ticket number and is associated with a specific car. Tickets are generated automatically when a car enters the parking system, using an 'after_create' callback defined in the Car model.
+
+My approach to managing the system is that a "car should only exist in the system while it is parked". Once a car is unparked, its corresponding car object is destroyed. This approach allows me for efficient reuse of parking spots and cars, as the uniqueness constraint on registration numbers is maintained. This way, the same car can be parked again in the future if the user comes back tomorrow.
+
+Furthermore, I kept extending the application by implementing additional features:
+
+Added validations to ensure the uniqueness of registration numbers and that users cannot park cars without providing registration numbers or colors.
+
+Handled case-insensitive constraints for colors and registration numbers in the database and search functionality.
+
+Developed queries to fulfill the specified objectives, such as retrieving registration numbers by color or ticket numbers for cars of a particular color.
+
+optimised the queries and code as needed time to time using either scope or conditional assignment operator, etc
+
+I have also written some test cases and I believe many more can be written further.
+
+This application can be further extended to create multiple parking zones for places having multiple floors or multiple areas. For this app I have created just one parking lot.
+
+I am open to suggestions for further improvements as nothing can't be perfect but we can strive to make it better.
